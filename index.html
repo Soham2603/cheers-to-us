@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Di! ✨</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --text-dark: #2d3436;
+            --text-light: #f9f9f9;
+            --accent: #6c5ce7;
+        }
+
+        body {
+            font-family: 'Comfortaa', cursive;
+            margin: 0;
+            padding: 0;
+            transition: background-color 1.2s ease, color 0.8s ease;
+            background-color: #FFF5F8;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Music Bar Alignment */
+        #music-bar {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .memory-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .memory-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* FIXED RATIO: Widescreen Polaroid */
+        .polaroid-card {
+            width: 420px; 
+            height: 320px; 
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            background: white;
+            padding: 12px;
+            padding-bottom: 60px; /* Traditional Polaroid bottom border */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .polaroid-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: calc(100% - 24px);
+            height: calc(100% - 72px);
+            backface-visibility: hidden;
+        }
+
+        .card-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #f0f0f0; 
+            border: 1px solid #eee;
+        }
+
+        .back {
+            background: #ffffff;
+            transform: rotateY(180deg);
+            text-align: center;
+            padding: 20px;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: -50px;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .flip-note {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #d63384;
+            text-align: center; /* FIXED: Added center alignment for the notes */
+        }
+
+        .final-wish {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        /* MOBILE ADJUSTMENTS: Everything Center Aligned */
+        @media (max-width: 480px) {
+            #music-bar {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.9rem; }
+            
+            .memory-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .polaroid-card {
+                width: 90vw; 
+                height: 70vw; 
+                margin: 0 auto;
+            }
+
+            .caption {
+                font-size: 0.9rem;
+                bottom: -45px;
+                left: 0;
+            }
+
+            .flip-note {
+                font-size: 0.85rem;
+                padding: 5px;
+            }
+
+            .card-inner {
+                padding-bottom: 50px;
+            }
+
+            .memory-section {
+                padding: 10px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="music-bar">
+        <audio id="bdayMusic" loop>
+            <source src="your-song.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="toggleMusic()" id="musicBtn" style="font-family: 'Comfortaa', cursive; background: #6c5ce7; color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s;">
+            Play Music 🎵
+        </button>
+    </div>
+
+    <section class="hero">
+        <h1 data-aos="fade-down">For the Best Senior ✨</h1>
+        <p data-aos="fade-up">Let’s scroll back through every memory that made us, "Us."</p>
+    </section>
+
+    <div class="memory-container">
+        
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory1.jpeg">
+                        <div class="caption">The "I Have To Meet Her" Moment ⛺</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"Blood donation camp mein sab blood de rahe the, aur main waha bas aapko dekh raha tha. 😅 Pehli baar aapko dekha and I just knew—isse toh baat karni hi padegi! There was something so cool and graceful about you that I couldn't just walk past. Best discovery of my college life, honestly! ✨"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory2.jpeg">
+                        <div class="caption">The Bold Ice-Breaker 📸</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"Full nonchalant vibes! Maine ek random photo bheji aur waha se shuru hui hamari crazy story. Risk toh tha, par woh kehte hai na, 'Risk hai toh ishq hai'—strictly friendship wala, of course! 😜 That random pic turned out to be the best decision ever. 🧊🔨"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory3.jpeg">
+                        <div class="caption">Our Safe Space 📞</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"Pata hi nahi chala kab humari normal 'Hi/Hello' lambi calls mein badal gayi. 🌙 Those chats turned into late-night therapy sessions where we shared everything. You really became my safe space, Di, and I'm so glad we reached this level of trust. 🤍"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory4.jpeg">
+                        <div class="caption">The Handshake I’ll Never Forget 🤝</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"Late hi sahi, par woh birthday wish sabse special thi. When you shook my hand for the first time to wish me, I think I forgot how to breathe for a second! 🙈 It was such a small gesture, but it meant the absolute world to me and made my entire day. 🎂✨"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory5.jpeg">
+                        <div class="caption">Corridor Glitches 🏫</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"College corridors mein woh chote chote 'Hi' aur 'Hello' mere din ka best part hote the. 🏃‍♂️💨 Meeting you between classes was always so short, par meri smile humesha badi hoti thi! Just seeing you around was enough to boost my mood for the whole day. ☀️"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory6.jpeg">
+                        <div class="caption">The Bus Stop Goodbye 🚌</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"Looking back at our last pictures at the bus stop makes me feel so nostalgic. 📸 Mood thoda heavy tha because of the goodbye, par memories bohot saari thi. I wish waqt thoda ruk jata toh hum aur dher saari photos khich paate! ⏳"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory7.jpeg">
+                        <div class="caption">The Foodie Pact 🍲</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"Abhi hamari Pani Puri aur Chhole Bhature date pending hai! 😋 Treat toh banti hai. Yeh sirf khana nahi hai, it's a celebration of our bond that is still 'to be continued...' Can't wait to finally tick this off our list together! 🌶️✨"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory8.jpeg">
+                        <div class="caption">Our Promised Date 🥂</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"Our promised date! 👫 Ek idea jo humne casually discuss kiya tha, par ab toh yeh bucket list pe hai. It’s going to be fun, special, and totally 'us'. Saving this spot for the best vibes and even better company! 🌟"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory9.jpeg">
+                        <div class="caption">Chaos & Nautanki 🤡</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"Thodi thodi nok-jhok, bohot saari bewakoofiyan, aur meri har waqt ki nautanki! 🤪 Misunderstandings toh hoti rahi, par humari dosti aur bhi strong ho gayi. Thank you for tolerating my 'fooling around' phase and always being patient with me. 🙇‍♂️🎈"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-section" data-aos="fade-up">
+            <div class="polaroid-card">
+                <div class="card-inner">
+                    <div class="card-face front">
+                        <img src="memory10.jpeg">
+                        <div class="caption"> The Overnight Chills ❄️</div>
+                    </div>
+                    <div class="card-face back">
+                        <p class="flip-note">"That long, overnight call... aur phir subah aapka woh soft 'Thank You'. 📞🌙 I literally got chills listening to it. It was the moment I realized how deep this bond really is. Some conversations change you forever, and that was definitely one of them. 🤍❄️"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="final-wish">
+        <h2 data-aos="zoom-in">To many more years of us🍻.</h2>
+        <p data-aos="fade-up">Happiest Birthday, Di! ❤️</p>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            const body = document.body;
+
+            if (scrollPercent < 0.3) {
+                body.style.backgroundColor = "#FFF5F8";
+                body.style.color = "#2d3436";
+            } else if (scrollPercent < 0.7) {
+                body.style.backgroundColor = "#E0F2FE";
+                body.style.color = "#2d3436";
+            } else {
+                body.style.backgroundColor = "#0A0A1A";
+                body.style.color = "#f9f9f9";
+            }
+        });
+
+        function toggleMusic() {
+            var music = document.getElementById("bdayMusic");
+            var btn = document.getElementById("musicBtn");
+            
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "Pause Music ⏸️";
+                btn.style.background = "#d63384";
+            } else {
+                music.pause();
+                btn.innerHTML = "Play Music 🎵";
+                btn.style.background = "#6c5ce7";
+            }
+        }
+    </script>
+</body>
+</html>
